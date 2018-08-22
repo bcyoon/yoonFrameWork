@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ybc.oraclebiz.service.repository.OracleBizRepository">
+	
+	<resultMap type="ybc.oraclebiz.service.model.OracleBiz" id="oracleBiz">
+		<result column="PAGELAYOUT_ID"			property="pagelayoutId" />	
+		<result column="NAME"			property="name" />		
+		<result column="VIEWNAME"			property="viewName" />		
+	</resultMap>	
+	
+	<select id="selectOracleBizInfo" parameterType="String" resultMap="oracleBiz">
+		 SELECT  PAGELAYOUT_ID
+		           ,NAME
+		           ,VIEWNAME
+		  FROM NSSHOP.PAGELAYOUT
+		  WHERE PAGELAYOUT_ID = #{pagelayoutId}
+	</select>
+	
+</mapper>

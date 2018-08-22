@@ -12,4 +12,7 @@ bin/**
 
 build
 *.log
+.classpath
 
+.externalToolBuilders
+.settings

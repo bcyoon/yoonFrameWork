@@ -14,6 +14,8 @@ public class OracleBiz{
 	private String name = "";
 	
 	private String viewName = "";
+	
+	private String id = "";
 
 	public String getPagelayoutId() {
 		return pagelayoutId;
@@ -39,10 +41,19 @@ public class OracleBiz{
 		this.viewName = viewName;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "OracleBiz [pagelayoutId=" + pagelayoutId + ", name=" + name + ", viewName=" + viewName + "]";
+		return "OracleBiz [pagelayoutId=" + pagelayoutId + ", name=" + name + ", viewName=" + viewName + ", id=" + id
+				+ "]";
 	}
-	
+
 
 }

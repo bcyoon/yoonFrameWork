@@ -9,16 +9,26 @@
                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd ">
 
-
 	<!-- DI 선언 -->
-	<mvc:annotation-driven />
-	<context:component-scan base-package="ybc">
-		<!-- <context:include-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/> 
+	<mvc:annotation-driven>
+    <mvc:message-converters>
+        <!-- @ResponseBody로 String 처리할때 한글처리 -->
+        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            <property name="supportedMediaTypes">
+                <list>
+                    <value>text/html;charset=UTF-8</value>
+                </list>
+            </property>
+        </bean>
+    </mvc:message-converters>
+	</mvc:annotation-driven>
+	 <context:component-scan base-package="ybc" use-default-filters="false">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
+			 <context:include-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/> 
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
-			<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/> 
-			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/> -->
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 	</context:component-scan>
-
+	
 	<!-- 프로퍼티 파일 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -40,7 +50,8 @@
 		<property name='order' value='1' />
 	</bean>
 
-
-
+	<!-- aop 설정 선언. 이것을 하지 않으면 context-datasource.xml내의 tranaction이 작동하지 않는다. -->
+	<aop:config/> 
+	
 
 </beans>

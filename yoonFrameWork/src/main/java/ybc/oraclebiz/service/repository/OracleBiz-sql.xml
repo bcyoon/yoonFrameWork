@@ -5,17 +5,23 @@
 <mapper namespace="ybc.oraclebiz.service.repository.OracleBizRepository">
 	
 	<resultMap type="ybc.oraclebiz.service.model.OracleBiz" id="oracleBiz">
-		<result column="PAGELAYOUT_ID"			property="pagelayoutId" />	
-		<result column="NAME"			property="name" />		
-		<result column="VIEWNAME"			property="viewName" />		
+		<result column="CUST_NUM"			property="pagelayoutId" />	
+		<result column="EMAIL_ADDR"			property="name" />		
+		<result column="FINAL_RVIS_DTTM"			property="viewName" />		
 	</resultMap>	
 	
 	<select id="selectOracleBizInfo" parameterType="String" resultMap="oracleBiz">
-		 SELECT  PAGELAYOUT_ID
-		           ,NAME
-		           ,VIEWNAME
-		  FROM NSSHOP.PAGELAYOUT
-		  WHERE PAGELAYOUT_ID = #{pagelayoutId}
+		 SELECT  CUST_NUM
+		           ,EMAIL_ADDR
+		           ,FINAL_RVIS_DTTM
+		  FROM NSSHOP.XGRCO_EASM_MP_BAS
+		  WHERE CUST_NUM = #{id}
 	</select>
+	
+	<update id="updateOracleBizInfo" parameterType="ybc.oraclebiz.service.model.OracleBiz">
+		 UPDATE NSSHOP.XGRCO_EASM_MP_BAS
+		    SET FINAL_RVIS_DTTM = SYSDATE
+		 WHERE CUST_NUM = #{id}    
+	</update>	
 	
 </mapper>

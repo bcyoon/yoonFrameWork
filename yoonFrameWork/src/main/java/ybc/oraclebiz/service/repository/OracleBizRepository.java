@@ -21,5 +21,11 @@ public interface OracleBizRepository {
 	public OracleBiz selectOracleBizInfo(String id);
 	
 	
+	/**
+	 * 샘플 업데이트 
+	 * @param oracleBiz
+	 * @return
+	 */
+	public int updateOracleBizInfo(OracleBiz oracleBiz);
 	
 }

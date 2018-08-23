@@ -10,8 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<script src="${pageContext.request.contextPath}/resources/js/lib/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/lib/jquery-migrate-1.4.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/lib/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/lib/jquery-migrate-1.4.1.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/page/hello/helloView.js"></script>
 

@@ -16,4 +16,9 @@ public class OracleBizRepositoryImpl implements OracleBizRepository {
 	public OracleBiz selectOracleBizInfo(String id){
 		 return sqlSessionOracleBiz.selectOne(sqlPrefix + "selectOracleBizInfo", id);
 	}
+	
+	@Override
+	public int updateOracleBizInfo(OracleBiz oracleBiz){
+		return sqlSessionOracleBiz.update(sqlPrefix + "updateOracleBizInfo", oracleBiz);
+	}
 }

@@ -1,5 +1,7 @@
 package ybc.oraclebiz.web;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +19,19 @@ public class OracleBizController {
 	@RequestMapping(value="/oracleBiz")
 	public String getOralceBiz(Model model, String id) {
 		
-		id = "10403";
+		id = "105300907";
 		
 		OracleBiz oracleBiz = oracleBizService.getOracleBizInfo(id);
 		
 		model.addAttribute("oracleBiz", oracleBiz);
 		
 		System.out.println(oracleBiz.toString());
+		
+		String currTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+
+		model.addAttribute("currTime", currTime);
+
+
 		
 		return "oracleBiz/oracleBizView"; 
 		 

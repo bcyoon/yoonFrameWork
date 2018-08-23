@@ -9,6 +9,9 @@
 	<li><a href="/oracleBiz">oracleBiz</a></li>
 </ul>
 
+Exception을 자동 발생시키기<br>
+
+
 <pre>
 ★ 참고자료
 Spring mvc 환경잡기
@@ -21,11 +24,12 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 
 ★ 오라클 jdbc 연동 ----- 완료
 1. 로컬 오라클 설치
-2. DB 트랜잭션
+2. DB 트랜잭션   http://roqkffhwk.tistory.com/112
 3. ibatis
-4. xml 형태에서 class형태로 변경(junitTest에서 사용이 편함)
 5. 로그출력
 
+★ java config 방식으로 변환하기
+  http://zgundam.tistory.com/86
 
 ★ 마리아DB jdbc 연동
 1. 로컬 마리아DB 설치
@@ -38,7 +42,8 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 
 ★ Redis 캐쉬 적용
 
-★ 형상관리 - GIT
+★ 형상관리 - GITHUB -- 완료
+https://blog.naver.com/indy9052/221181862947
 
 ★ 품질관리 - 코드인스팩션 - SonarQube
 

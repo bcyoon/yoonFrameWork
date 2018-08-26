@@ -2,22 +2,28 @@ package ybc.oraclebiz.web;
 
 import java.text.SimpleDateFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ybc.hello.web.HelloController;
 import ybc.oraclebiz.service.OracleBizService;
 import ybc.oraclebiz.service.model.OracleBiz;
 
 @Controller
 public class OracleBizController {
 	
+	private static Logger logger = LoggerFactory.getLogger(OracleBizController.class);
+	
+	
 	@Autowired
 	OracleBizService oracleBizService;
 	
 	@RequestMapping(value="/oracleBiz")
-	public String getOralceBiz(Model model, String id) {
+	public String getOracleBiz(Model model, String id) {
 		
 		id = "105300907";
 		
@@ -25,7 +31,7 @@ public class OracleBizController {
 		
 		model.addAttribute("oracleBiz", oracleBiz);
 		
-		System.out.println(oracleBiz.toString());
+		logger.info(oracleBiz.toString());
 		
 		String currTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
 

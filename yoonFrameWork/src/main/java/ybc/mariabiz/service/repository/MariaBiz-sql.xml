@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ybc.mariabiz.service.repository.MariaBizRepository">
+	
+	<resultMap type="ybc.mariabiz.service.model.MariaBiz" id="mariaBiz">
+		<result column="ID"				property="id" />	
+		<result column="NAME"			property="name" />		
+		<result column="DESCRIPTION"	property="description" />		
+		<result column="REG_DTM"		property="regDtm" />		
+	</resultMap>	
+	
+	<select id="selectMariaBizInfo" parameterType="integer" resultMap="mariaBiz">
+		 SELECT  ID
+		           ,NAME
+		           ,DESCRIPTION
+		           ,REG_DTM
+		  FROM YBC.MEMBER
+		  WHERE ID = #{id}
+	</select>
+	
+	<update id="updateMariaBizInfo" parameterType="ybc.mariabiz.service.model.MariaBiz">
+		 UPDATE YBC.MEMBER
+		    SET REG_DTM = current_timestamp
+		 WHERE ID = #{id}    
+	</update>	
+	
+</mapper>

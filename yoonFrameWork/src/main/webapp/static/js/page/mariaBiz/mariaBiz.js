@@ -19,7 +19,7 @@ function setEvent(){
 		if(!confirm("정상 저장 하시겠습니까?")) return;
 
 			$.ajax({
-				url		: "/ajax/setOracleBiz",
+				url		: "/ajax/setMariaBiz",
 				type	: "POST",
 				data	: {},
 				success : function(data){
@@ -39,7 +39,7 @@ function setEvent(){
 		if(!confirm("실패 저장 하시겠습니까?")) return;
 
 			$.ajax({
-				url		: "/ajax/setOracleBizBad",
+				url		: "/ajax/setMariaBizBad",
 				type	: "POST",
 				data	: {},
 				success : function(data){

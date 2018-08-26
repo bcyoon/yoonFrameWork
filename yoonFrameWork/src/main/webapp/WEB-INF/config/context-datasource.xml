@@ -18,9 +18,8 @@
 		<property name="fileEncoding" value="UTF-8" />
 	</bean>
 
-	<!-- DB 데이타소스 세팅 -->
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
+	<!-- Oracle DB 데이타소스 세팅 -->
+	<bean id="dataSourceSpiedOracle" class="org.apache.commons.dbcp2.BasicDataSource"	destroy-method="close">
 		<property name="driverClassName" value="${datasource.oracleBiz.driverClassName}"></property>
 		<property name="url" value="${datasource.oracleBiz.url}"></property>
 		<property name="username" value="${datasource.oracleBiz.username}"></property>
@@ -29,8 +28,8 @@
 	</bean>
 
 
-	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-		<constructor-arg ref="dataSourceSpied" />
+	<bean id="dataSourceOracle" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpiedOracle" />
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
 				<property name="loggingType" value="MULTI_LINE" />
@@ -40,18 +39,17 @@
 	</bean>
 
 
-	<!-- mybatis 설정, mybatis-spring 모듈 사용 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
+	<!-- Oracle mybatis 설정, mybatis-spring 모듈 사용 -->
+	<bean id="sqlSessionFactoryOracle" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceOracle"></property>
 		<property name="mapperLocations" value="classpath:ybc/**/*-sql.xml" />
 	</bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	<bean id="sqlSessionOracle" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryOracle"></constructor-arg>
 	</bean>
 
-
-	<!-- 트랜잭션 설정  Service내 set 매소드에 작동한다. -->
+	<!-- Oralce 트랜잭션 설정  Service내 set 매소드에 작동한다. 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<property name="dataSource" ref="dataSource"/> 
 	</bean> 
@@ -66,6 +64,71 @@
 			<tx:method name="set*" rollback-for="Exception"/> 
 		</tx:attributes>
 	</tx:advice>
+-->
+	<bean id="transactionManagerOracle" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<property name="dataSource" ref="dataSourceOracle"/> 
+	</bean> 
+
+	<tx:advice id="txAdviceOralce" transaction-manager="transactionManagerOracle">
+		<tx:attributes> 
+			<tx:method name="set*" rollback-for="Exception"/> 
+		</tx:attributes>
+	</tx:advice>
+
+
+	<!-- MariaDB 데이타소스 세팅 -->
+	<bean id="dataSourceSpiedMaria" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${datasource.mariaBiz.driverClassName}"></property>
+		<property name="url" value="${datasource.mariaBiz.url}"></property>
+		<property name="username" value="${datasource.mariaBiz.username}"></property>
+		<property name="password" value="${datasource.mariaBiz.password}"></property>
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>
+
+
+	<bean id="dataSourceMaria" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpiedMaria" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL         :  " />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- Maria mybatis 설정, mybatis-spring 모듈 사용 -->
+	<bean id="sqlSessionFactoryMaria" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceMaria"></property>
+		<property name="mapperLocations" value="classpath:ybc/**/*-sql.xml" />
+	</bean>
+
+	<bean id="sqlSessionMaria" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryMaria"></constructor-arg>
+	</bean>
+
+	<!-- Maria 트랜잭션 설정  Service내 set 매소드에 작동한다. -->
+	<bean id="transactionManagerMaria" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<property name="dataSource" ref="dataSourceMaria"/> 
+	</bean> 
+	
+	
+	<tx:advice id="txAdviceMaria" transaction-manager="transactionManagerMaria">
+		<tx:attributes> 
+			<tx:method name="set*" rollback-for="Exception"/> 
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="serviceOperation" expression="execution(public * ybc..service.*Service.*(..))" /> 
+		<aop:advisor id="transactionAdvisorOracle" pointcut-ref="serviceOperation" advice-ref="txAdviceOralce"/> 
+		<aop:advisor id="transactionAdvisorMaria" pointcut-ref="serviceOperation" advice-ref="txAdviceMaria"/> 
+	</aop:config> 
+
+
+
+
+
 
 
 </beans>

@@ -53,11 +53,18 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-core</artifactId>
-		    <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
+
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 		<!-- JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -104,29 +111,24 @@
 			<version>12.1.0.1-atlassian-hosted</version>
 		</dependency>
 
+		<!-- MariaDB 설정 -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+
 		<!-- 선언적 트랙잭션 처리를 위해(AOP) -->
 		<dependency>
-	  	 	<groupId>org.aspectj</groupId>
+			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.1</version>
-		</dependency> 
-		
-		<!-- 인터페이스 구조가 아니라면 아래 주석 풀어야 proxy 처리 가능
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>2.1_3</version>
 		</dependency>
-		 -->
 
-
-
-
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-tx</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>
+		<!-- 인터페이스 구조가 아니라면 아래 주석 풀어야 proxy 처리 가능 <dependency> <groupId>cglib</groupId> 
+			<artifactId>cglib-nodep</artifactId> <version>2.1_3</version> </dependency> 
+			<dependency> <groupId>org.springframework</groupId> <artifactId>spring-tx</artifactId> 
+			<version>${org.springframework-version}</version> </dependency> -->
 
 		<!-- Logging -->
 		<dependency>
@@ -151,7 +153,13 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.7.21</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -187,17 +195,17 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>org.mockito</groupId>
-		    <artifactId>mockito-all</artifactId>
-		    <version>1.9.5</version>
-		    <scope>test</scope>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>3.2.3.RELEASE</version>
-		    <scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.3.RELEASE</version>
+			<scope>test</scope>
 		</dependency>
 
 

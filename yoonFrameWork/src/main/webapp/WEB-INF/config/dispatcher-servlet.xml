@@ -51,7 +51,15 @@
 	</bean>
 
 	<!-- aop 설정 선언. 이것을 하지 않으면 context-datasource.xml내의 tranaction이 작동하지 않는다. -->
-	<aop:config/> 
+	
+	<aop:config/>
+	<!--  
+ 	<aop:config proxy-target-class="true">
+		<aop:pointcut id="serviceOperation" expression="execution(public * ybc..service.*Service.*(..))" /> 
+		<aop:advisor id="transactionAdvisorOracle" pointcut-ref="serviceOperation" advice-ref="txAdvice"/> 
+		<aop:advisor id="transactionAdvisorMaria" pointcut-ref="serviceOperation" advice-ref="txAdviceMaria"/> 
+	</aop:config> 
+	-->
 	
 
 </beans>

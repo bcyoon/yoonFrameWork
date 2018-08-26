@@ -7,9 +7,10 @@
 <ul>
 	<li><a href="/hello">helloView</a></li>
 	<li><a href="/oracleBiz">oracleBiz</a></li>
+	<li><a href="/mariaBiz">mariaBiz</a></li>
 </ul>
 
-Exception을 자동 발생시키기<br>
+
 
 
 <pre>
@@ -28,14 +29,16 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 3. ibatis
 5. 로그출력
 
+★ log4j 로그 출력하기  ---- Console에는 찍히는데 File 생성은 안됨 부터....@TODO
+
+★ 마리아DB jdbc 연동  --- 멀티연동시 조회는되는데 Transation발생시 Maria가 Oracle로 연결됨 @TODO
+1. 로컬 마리아DB 설치  -- 완료
+
 ★ java config 방식으로 변환하기
   http://zgundam.tistory.com/86
 
-★ 마리아DB jdbc 연동
-1. 로컬 마리아DB 설치
 
 
-★ junit
 
 ★ 몽고 DB jdbc 연동
 1. 로컬 몽고 DB 설치
@@ -60,7 +63,11 @@ https://blog.naver.com/indy9052/221181862947
 
 ★ 성능테스트
 
+★ 스파크
 
+★ 딥런닝
+
+★ 빅데이터 분석
 
 게들링?
 

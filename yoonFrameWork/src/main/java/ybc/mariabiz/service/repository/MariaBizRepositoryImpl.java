@@ -18,8 +18,6 @@ public class MariaBizRepositoryImpl implements MariaBizRepository {
 	@Override
 	public MariaBiz selectMariaBizInfo(int id){
 		
-		System.out.println("ddddddddddddd="+id);
-		
 		 return sqlSessionMaria.selectOne(sqlPrefix + "selectMariaBizInfo", id);
 	}
 	

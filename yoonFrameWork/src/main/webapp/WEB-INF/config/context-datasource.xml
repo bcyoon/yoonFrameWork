@@ -4,11 +4,14 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:jee="http://www.springframework.org/schema/jee" 
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
                            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd 
-                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/data/mongo 
+            			   http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.xsd">
 
 	<!-- 프로퍼티 파일 -->
 	<bean
@@ -38,8 +41,6 @@
 		</property>
 	</bean>
 
-
-	<!-- Oracle mybatis 설정, mybatis-spring 모듈 사용 -->
 	<bean id="sqlSessionFactoryOracle" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceOracle"></property>
 		<property name="mapperLocations" value="classpath:ybc/**/*-sql.xml" />
@@ -48,23 +49,7 @@
 	<bean id="sqlSessionOracle" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryOracle"></constructor-arg>
 	</bean>
-
-	<!-- Oralce 트랜잭션 설정  Service내 set 매소드에 작동한다. 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
-		<property name="dataSource" ref="dataSource"/> 
-	</bean> 
-	
-	<aop:config> 
-		<aop:pointcut id="serviceOperation" expression="execution(public * ybc..service.*Service.*(..))" /> 
-		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceOperation" advice-ref="txAdvice"/> 
-	</aop:config> 
-	
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes> 
-			<tx:method name="set*" rollback-for="Exception"/> 
-		</tx:attributes>
-	</tx:advice>
--->
+	 
 	<bean id="transactionManagerOracle" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<property name="dataSource" ref="dataSourceOracle"/> 
 	</bean> 
@@ -74,7 +59,6 @@
 			<tx:method name="set*" rollback-for="Exception"/> 
 		</tx:attributes>
 	</tx:advice>
-
 
 	<!-- MariaDB 데이타소스 세팅 -->
 	<bean id="dataSourceSpiedMaria" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
@@ -97,7 +81,6 @@
 	</bean>
 
 
-	<!-- Maria mybatis 설정, mybatis-spring 모듈 사용 -->
 	<bean id="sqlSessionFactoryMaria" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceMaria"></property>
 		<property name="mapperLocations" value="classpath:ybc/**/*-sql.xml" />
@@ -107,7 +90,7 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryMaria"></constructor-arg>
 	</bean>
 
-	<!-- Maria 트랜잭션 설정  Service내 set 매소드에 작동한다. -->
+	
 	<bean id="transactionManagerMaria" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
 		<property name="dataSource" ref="dataSourceMaria"/> 
 	</bean> 
@@ -119,16 +102,25 @@
 		</tx:attributes>
 	</tx:advice>
 
+	
+	<!-- mongoDB 설정 -->
+	<mongo:db-factory
+		id="mongoDbFactory"
+		host="localhost"
+		port="27017"
+		dbname="yoon"/>
+	 
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"></constructor-arg>
+    </bean>
+ 
+	
+	<!-- 트랜잭션 설정 등록  -->
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="serviceOperation" expression="execution(public * ybc..service.*Service.*(..))" /> 
 		<aop:advisor id="transactionAdvisorOracle" pointcut-ref="serviceOperation" advice-ref="txAdviceOralce"/> 
 		<aop:advisor id="transactionAdvisorMaria" pointcut-ref="serviceOperation" advice-ref="txAdviceMaria"/> 
 	</aop:config> 
-
-
-
-
-
 
 
 </beans>

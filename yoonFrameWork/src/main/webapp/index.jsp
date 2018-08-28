@@ -8,6 +8,7 @@
 	<li><a href="/hello">helloView</a></li>
 	<li><a href="/oracleBiz">oracleBiz</a></li>
 	<li><a href="/mariaBiz">mariaBiz</a></li>
+	<li><a href="/mongoBiz">mongoBiz</a></li>
 </ul>
 
 
@@ -40,8 +41,26 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 
 
 
-★ 몽고 DB jdbc 연동
-1. 로컬 몽고 DB 설치
+★ 몽고 DB jdbc 연동 --
+1. 로컬 몽고 DB 설치 -- 완료
+  몽도 DB 띄우기 cmd창 1 : mongod --config c:\mongodb\mongod.cfg
+ 몽고 sheel cmd창 2 : mongo
+ 몽고 DB 셧다운 하기 : 몽고 sheel 창에서 db.shutdownServer()  
+
+간단명령어
+use yoon
+db.createCollection('emp')
+db.emp.insert({id:"ybc", name:"윤병찬"})
+db.emp.insert({id:"abc", name:"에비씨"})
+db.emp.find()
+
+https://m.blog.naver.com/PostView.nhn?blogId=scw0531&logNo=221005412595&proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F
+
+테스트 데이타
+db.createCollection("member");
+db.member.insert({name:"윤병찬", memo:"윤메모 ABC"})
+db.member.insert({name:"홍길동", memo:"홍메모 ABC"})
+
 
 ★ Redis 캐쉬 적용
 
@@ -54,7 +73,7 @@ https://blog.naver.com/indy9052/221181862947
 
 ★ Redis 캐쉬 적용
 
-★ 로깅
+
 
 ★ Build tool
  - 

@@ -22,7 +22,7 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 
 ★ config 파일  서버별 location 하기 (배포 환경 별 설정 분리하기) ----- 완료
 1. 서버 run config - argument탭 - vm argument 란에 -Dspring.profiles.active=local 삽입
-2. spring-servlet.xml내에서 샵{systemProperties['spring.profiles.active']} 을 사용하면 local값이 들어옴 
+2. dispatcher-servlet.xml내에서 샵{systemProperties['spring.profiles.active']} 을 사용하면 local값이 들어옴 
 
 ★ 오라클 jdbc 연동 ----- 완료
 1. 로컬 오라클 설치
@@ -32,7 +32,7 @@ http://mangkyu.tistory.com/category/Spring%20%20MVC
 
 ★ log4j 로그 출력하기  ---- Console에는 찍히는데 File 생성은 안됨 부터....@TODO
 
-★ 마리아DB jdbc 연동  --- 멀티연동시 조회는되는데 Transation발생시 Maria가 Oracle로 연결됨 @TODO
+★ 마리아DB jdbc 연동  --- 완료
 1. 로컬 마리아DB 설치  -- 완료
 
 ★ java config 방식으로 변환하기
@@ -62,21 +62,35 @@ db.member.insert({name:"윤병찬", memo:"윤메모 ABC"})
 db.member.insert({name:"홍길동", memo:"홍메모 ABC"})
 
 
-★ Redis 캐쉬 적용
+★ Redis 단일 캐쉬 적용
+명령프롬프트트 : cd C:\Program Files\Redis
+          redis-server.exe 실행
+ 만약 실행시   # Creating  Server TCP listening socket *:6379:No such file or directory 라는 오류가 뜬다면
+  다른 명령프롬프트에서
+  C:\Program Files\Redis>redis-cli.exe
+  127.0.0.1:6379> shutdown
+  not connected> exit
+  후 다시 다른명령프롬프트창에서 redis-server.exe 실행
+
+★ Redis Cluster캐쉬 적용
+https://itwise.atlassian.net/wiki/spaces/ATEAM/pages/67207173/Redis+Clustering
+
+★ EhCache 도 있음
 
 ★ 형상관리 - GITHUB -- 완료
 https://blog.naver.com/indy9052/221181862947
 
 ★ 품질관리 - 코드인스팩션 - SonarQube
 
+★ 품질관리 - PMD 이클립스 플러그인형태
+
 ★ RESTfull API
 
-★ Redis 캐쉬 적용
 
 
 
 ★ Build tool
- - 
+ - CI - hudson
 
 ★ Test Case
 
@@ -91,6 +105,23 @@ https://blog.naver.com/indy9052/221181862947
 게들링?
 
 ★ Docker
+
+★ 파브리게이터 협업툴
+
+★ 파일 업로드 / 다운로드
+
+★ 엑셀 다운로드
+
+★ JAVA API - JAX-RS
+
+★ 배핑 - Spring Batch 2.2.7
+
+★ Excel Apache POI/iXLS
+
+★ 암호화 - Encryption/Decryption - Jasypt
+
+★ELK
+
 </pre>
 
 </body>

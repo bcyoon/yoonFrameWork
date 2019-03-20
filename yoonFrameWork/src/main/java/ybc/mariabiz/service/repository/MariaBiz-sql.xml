@@ -8,21 +8,21 @@
 		<result column="ID"				property="id" />	
 		<result column="NAME"			property="name" />		
 		<result column="DESCRIPTION"	property="description" />		
-		<result column="REG_DTM"		property="regDtm" />		
+		<result column="REGDTM"			property="regDtm" />		
 	</resultMap>	
 	
 	<select id="selectMariaBizInfo" parameterType="integer" resultMap="mariaBiz">
 		 SELECT  ID
 		           ,NAME
 		           ,DESCRIPTION
-		           ,REG_DTM
-		  FROM YBC.MEMBER
+		           ,REGDTM
+		  FROM MEMBER
 		  WHERE ID = #{id}
 	</select>
 	
 	<update id="updateMariaBizInfo" parameterType="ybc.mariabiz.service.model.MariaBiz">
-		 UPDATE YBC.MEMBER
-		    SET REG_DTM = current_timestamp
+		 UPDATE MEMBER
+		    SET REGDTM = current_timestamp
 		 WHERE ID = #{id}    
 	</update>	
 	
